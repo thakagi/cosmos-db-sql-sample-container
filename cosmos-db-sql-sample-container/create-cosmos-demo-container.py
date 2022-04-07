@@ -104,6 +104,10 @@ def create_documents(document_token, volcano, document_api):
         r = requests.post(document_api, data=json.dumps(i), headers=headers, verify=False)
 
 def run():
+    # Check required option
+    if not options.container_name:
+        parser.error('Container name not given')
+ 
     # Create a container
     container_token = get_resource_token(CONTAINER_TOKEN)
     colls_api = "https://" + COSMOS_ACCOUNT_NAME + ".documents.azure.com/dbs/" + DATABASE_NAME + "/colls"
